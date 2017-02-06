@@ -4,7 +4,7 @@ See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-
 <configuration scan="true" scanPeriod="30 seconds" debug="false">
 
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
-        <resetJUL>false</resetJUL>
+        <resetJUL>true</resetJUL>
     </contextListener>
 
     <!-- To enable JMX Management -->
