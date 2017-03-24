@@ -121,7 +121,7 @@ public class DBRepoMyBatisConfiguration implements TransactionManagementConfigur
 
 		ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 		try {
-			bean.setMapperLocations(resolver.getResources("classpath:" + CommonParams.BASEPACKAGEPATH + File.separator + "*.xml"));
+			bean.setMapperLocations(resolver.getResources("classpath:" + CommonParams.BASEPACKAGEPATH_ + File.separator + "*.xml"));
 			logger.info("SqlSessionFactory Created");
 			return bean.getObject();
 		} catch (Exception e) {

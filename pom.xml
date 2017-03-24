@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.popolong.studio</groupId>
-	<artifactId>SmartService_Backend</artifactId>
+	<artifactId>smartservice</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
@@ -22,6 +22,8 @@
 		<mysql.connection.java>5.1.25</mysql.connection.java>
 		<google.guava.version>18.0</google.guava.version>
 		<spring.jdbc.version>3.0.4.RELEASE</spring.jdbc.version>
+		<docker.image.prefix>iafboy</docker.image.prefix>
+		<docker.plugin.version>0.4.13</docker.plugin.version>
 	</properties>
 
 	<dependencies>
@@ -129,6 +131,30 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>${docker.plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
