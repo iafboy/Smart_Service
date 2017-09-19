@@ -15,4 +15,3 @@ push:
         repository: $DOCKER_REPOSITORY
         registry: https://index.docker.io/v1/
         cmd: java -jar  /pipeline/source/target/smartservice-1.0.jar reg 8111
- 
